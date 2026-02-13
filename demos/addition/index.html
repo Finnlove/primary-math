@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>苹果加法 - 三年级</title>
+    <style>
+        body {
+            background: #fef9e7;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+        h1 {
+            color: #b45309;
+            font-size: 48px;
+        }
+        .apples {
+            font-size: 60px;
+            margin: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            margin: 10px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        .equation {
+            font-size: 48px;
+            color: #1e40af;
+            margin: 30px;
+        }
+        a {
+            color: #6b7280;
+            font-size: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍎 苹果加法</h1>
+    
+    <div class="apples" id="leftApples">🍎🍎🍎</div>
+    <div class="apples" id="rightApples">🍎🍎</div>
+    
+    <div class="equation" id="equation">3 + 2 = 5</div>
+    
+    <div>
+        <button onclick="addLeft()">左边 +1</button>
+        <button onclick="addRight()">右边 +1</button>
+        <button onclick="resetApples()">重置</button>
+    </div>
+    
+    <p><a href="../../index.html">← 返回主页</a></p>
+
+    <script>
+        let left = 3;
+        let right = 2;
+        
+        function updateDisplay() {
+            document.getElementById('leftApples').innerHTML = '🍎'.repeat(left);
+            document.getElementById('rightApples').innerHTML = '🍎'.repeat(right);
+            document.getElementById('equation').innerHTML = 
+                left + ' + ' + right + ' = ' + (left + right);
+        }
+        
+        function addLeft() {
+            if (left < 10) left++;
+            updateDisplay();
+        }
+        
+        function addRight() {
+            if (right < 10) right++;
+            updateDisplay();
+        }
+        
+        function resetApples() {
+            left = 3;
+            right = 2;
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>
