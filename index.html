@@ -2,50 +2,208 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>三年级数学乐园</title>
+    <title>小学数学·3-6年级</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            padding: 30px;
         }
-        .box {
-            max-width: 800px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+        }
+        header {
             background: white;
-            border-radius: 20px;
+            border-radius: 30px;
             padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         h1 {
-            color: #667eea;
             font-size: 48px;
-            text-align: center;
+            color: #1e3c72;
+            margin-bottom: 20px;
         }
-        p {
+        .subtitle {
             font-size: 24px;
-            text-align: center;
-            color: #333;
+            color: #666;
         }
-        .welcome {
+        
+        /* 横向导航 */
+        .grade-nav {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .grade-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 15px;
+            cursor: pointer;
+            color: #4b5563;
+            transition: all 0.3s;
+        }
+        .grade-btn:hover {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+        .grade-btn.active {
+            background: #1e3c72;
+            color: white;
+        }
+        
+        /* 学期列表 - 竖着显示 */
+        .semester-box {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 300px;
+        }
+        .semester-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .semester-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            padding: 20px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #1e293b;
+            font-size: 22px;
+            transition: all 0.3s;
+            border-left: 8px solid #94a3b8;
+        }
+        .semester-item:hover {
+            background: #e0f2fe;
+            transform: translateX(10px);
+            border-left-color: #1e3c72;
+        }
+        .semester-item.active {
+            background: #fef3c7;
+            border-left-color: #f59e0b;
+            font-weight: bold;
+        }
+        .semester-badge {
+            background: #ef4444;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+        .empty-message {
             text-align: center;
-            font-size: 28px;
-            color: #059669;
-            margin: 30px;
+            color: #94a3b8;
+            font-size: 24px;
+            padding: 60px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: white;
         }
     </style>
 </head>
 <body>
-   <div class="box">
-    <h1>🧮 三年级数学乐园</h1>
-    <p>欢迎 Finnlove 小朋友！</p>
-    
-    <div style="background: #f3e8ff; border-radius: 15px; padding: 30px; margin: 30px 0;">
-        <a href="demos/addition/index.html" style="display: block; background: #667eea; color: white; text-decoration: none; padding: 20px; border-radius: 10px; font-size: 28px;">
-            🍎 苹果加法游戏
-        </a>
-        <p style="font-size: 20px; margin-top: 20px;">点击开始学习加法！</p>
+    <div class="container">
+        <header>
+            <h1>🧮 小学数学·3-6年级</h1>
+            <p class="subtitle">点击年级，选择学期</p>
+        </header>
+
+        <!-- 横向导航：四个年级 -->
+        <div class="grade-nav">
+            <button id="grade3-btn" class="grade-btn active" onclick="showGrade(3)">🐼 三年级</button>
+            <button id="grade4-btn" class="grade-btn" onclick="showGrade(4)">🦊 四年级</button>
+            <button id="grade5-btn" class="grade-btn" onclick="showGrade(5)">🐨 五年级</button>
+            <button id="grade6-btn" class="grade-btn" onclick="showGrade(6)">🦁 六年级</button>
+        </div>
+
+        <!-- 学期列表：竖着显示 -->
+        <div class="semester-box" id="semester-box">
+            <!-- 三年级 -->
+            <div id="grade3-semesters">
+                <div class="semester-list">
+                    <a href="grade3/三年级上册/" class="semester-item">
+                        <span>📘 三年级 · 上册</span>
+                        <span style="color: #9ca3af;">准备中</span>
+                    </a>
+                    <a href="grade3/三年级下册/" class="semester-item active">
+                        <span>📕 三年级 · 下册</span>
+                        <span class="semester-badge">10个单元</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 四年级 -->
+            <div id="grade4-semesters" style="display: none;">
+                <div class="empty-message">
+                    🦊 四年级准备中<br>
+                    <span style="font-size: 18px;">先来学习三年级吧！</span>
+                </div>
+            </div>
+
+            <!-- 五年级 -->
+            <div id="grade5-semesters" style="display: none;">
+                <div class="empty-message">
+                    🐨 五年级准备中<br>
+                    <span style="font-size: 18px;">先来学习三年级吧！</span>
+                </div>
+            </div>
+
+            <!-- 六年级 -->
+            <div id="grade6-semesters" style="display: none;">
+                <div class="empty-message">
+                    🦁 六年级准备中<br>
+                    <span style="font-size: 18px;">先来学习三年级吧！</span>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p style="font-size: 18px;">✅ 目前已完成：三年级下册（10个单元）</p>
+        </footer>
     </div>
-</div>
+
+    <script>
+        function showGrade(grade) {
+            // 隐藏所有学期
+            document.getElementById('grade3-semesters').style.display = 'none';
+            document.getElementById('grade4-semesters').style.display = 'none';
+            document.getElementById('grade5-semesters').style.display = 'none';
+            document.getElementById('grade6-semesters').style.display = 'none';
+            
+            // 移除所有按钮的active状态
+            document.getElementById('grade3-btn').classList.remove('active');
+            document.getElementById('grade4-btn').classList.remove('active');
+            document.getElementById('grade5-btn').classList.remove('active');
+            document.getElementById('grade6-btn').classList.remove('active');
+            
+            // 显示选中的年级
+            document.getElementById('grade' + grade + '-semesters').style.display = 'block';
+            document.getElementById('grade' + grade + '-btn').classList.add('active');
+        }
+    </script>
 </body>
 </html>
